@@ -10,5 +10,23 @@
     "repository":   "armani-dev/proprietary_vendor_xiaomi",
     "target_path":  "vendor/xiaomi",
     "revision":     "cm-11.0"
+  },
+  {
+    "remote":       "github",
+    "repository":   "armani-dev/android_hardware_qcom_display-caf",
+    "target_path":  "hardware/qcom/display-caf",
+    "revision":     "cm-11.0"
+  },
+  {
+    "remote":       "github",
+    "repository":   "armani-dev/android_hardware_qcom_media-caf",
+    "target_path":  "hardware/qcom/media-caf",
+    "revision":     "cm-11.0"
+  },
+  {
+    "remote":       "github",
+    "repository":   "armani-dev/android_hardware_libhardware_legacy",
+    "target_path":  "hardware/libhardware_legacy",
+    "revision":     "cm-11.0"
   }
 ]
