@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Temporary workaround
+$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr/include)
+
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),armani)
