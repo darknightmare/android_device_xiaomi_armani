@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Camera flash (App) -->
+    <bool name="camera_has_flash">true</bool>
+</resources>
