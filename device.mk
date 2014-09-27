@@ -153,10 +153,6 @@ PRODUCT_PACKAGES += \
     qrngd \
     qrngp
 
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
