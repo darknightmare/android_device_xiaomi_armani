@@ -1,9 +1,9 @@
 [
   {
-    "remote":       "cm",
-    "repository":   "CyanogenMod/android_device_qcom_common",
+    "remote":       "github",
+    "repository":   "AOSPA-legacy/android_device_qcom_common",
     "target_path":  "device/qcom/common",
-    "revision":     "cm-11.0"
+    "revision":     "kitkat"
   },
   {
     "remote":       "github",
