@@ -174,5 +174,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.forbid_mount=/persist,/firmware \
     ro.cwm.forbid_format=/fsg,/firmware,/boot,/persist
 
+# Recovery Options
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cwm.enable_key_repeat=true \
+    ro.cwm.forbid_mount=/persist,/firmware \
+    ro.cwm.forbid_format=/fsg,/firmware,/boot,/persist
+
 # Call the proprietary setup
 $(call inherit-product, vendor/xiaomi/armani/armani-vendor.mk)

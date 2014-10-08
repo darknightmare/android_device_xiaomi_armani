@@ -46,12 +46,15 @@ TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/xiaomi/armani/kernel
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
+TARGET_KERNEL_SOURCE := kernel/xiaomi/armani
+TARGET_KERNEL_CONFIG := cm_msm8226_perf_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --dt device/xiaomi/armani/dt.img --kernel_offset 0x00008000 --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
+BOARD_MKBOOTIMG_ARGS := --dt $(LOCAL_PATH)/dt.img --kernel_offset 0x00008000 --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg_pre.mk
 
 # Wifi
 BOARD_HAVE_XIAOMI_WIFI := true
@@ -85,6 +88,11 @@ TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
+TARGET_USES_OVERLAY := true
+TARGET_USES_SF_BYPASS := true
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+TARGET_DISPLAY_INSECURE_MM_HEAP := true
+
 # Shader cache config options
 # Maximum size of the GLES Shaders that can be cached for reuse.
 # Increase the size if shaders of size greater than 12KB are used.
@@ -105,6 +113,10 @@ AUDIO_FEATURE_DISABLED_SSR := true
 # Media
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 TARGET_QCOM_MEDIA_VARIANT := caf
+
+# GPS
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+TARGET_NO_RPC := true
 
 # FM
 BOARD_HAVE_QCOM_FM := true
