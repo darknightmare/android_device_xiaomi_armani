@@ -45,11 +45,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
-
-# Kernel
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/kernel:kernel \
-    $(LOCAL_PATH)/dt.img:dt.img
     
 # Prebuilt
 PRODUCT_COPY_FILES += \
@@ -73,7 +68,11 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8226
+    gps.msm8226 \
+    libgps.utils \
+    libloc_adapter \
+    libloc_api_v02 \
+    libloc_eng
 
 # Display
 PRODUCT_PACKAGES += \
@@ -164,13 +163,16 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     wcnss_service
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0
-
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+ 
+# Recovery Options
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cwm.enable_key_repeat=true \
+    ro.cwm.forbid_mount=/persist,/firmware \
+    ro.cwm.forbid_format=/fsg,/firmware,/boot,/persist
 
 # Call the proprietary setup
 $(call inherit-product, vendor/xiaomi/armani/armani-vendor.mk)
