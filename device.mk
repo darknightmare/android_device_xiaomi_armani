@@ -163,6 +163,9 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     wcnss_service
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0
+
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
