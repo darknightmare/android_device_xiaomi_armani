@@ -7,7 +7,7 @@
   },
   {
     "remote":       "github",
-    "repository":   "armani-dev/android_kernel_xiaomi_msm8226-common",
+    "repository":   "armani-dev/android_kernel_xiaomi_armani",
     "target_path":  "kernel/xiaomi/armani",
     "revision":     "cm-11.0"
   },
