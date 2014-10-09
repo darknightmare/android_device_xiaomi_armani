@@ -161,10 +161,6 @@
     <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>
 
-    <!-- If true, the screen can be rotated via the accelerometer in all 4
-         rotations as the default behavior. -->
-    <bool name="config_allowAllRotations">true</bool>
-
     <!-- Indicate whether closing the lid causes the device to go to sleep and opening
          it causes the device to wake up.
          The default is false. -->
@@ -187,8 +183,7 @@
            remote submix module.  This module is used to record and stream system
            audio output to the WiFi display encoder in the media server.
          * The remote submix module "audio.r_submix.default" must be installed on the device.
-         * The device must be provisioned with HDCP keys (for protected content).
-    -->
+         * The device must be provisioned with HDCP keys (for protected content). -->
     <bool name="config_enableWifiDisplay">true</bool>
 
     <!-- When true use the linux /dev/input/event subsystem to detect the switch changes
@@ -207,5 +202,9 @@
         For example, a device with Home, Back and Menu keys would set this
         config to 7. -->
     <integer name="config_deviceHardwareKeys">7</integer>
+
+    <!-- Default value for proximity check on screen wake
+         NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms). -->
+    <bool name="config_proximityCheckOnWake">true</bool>
 
 </resources>
