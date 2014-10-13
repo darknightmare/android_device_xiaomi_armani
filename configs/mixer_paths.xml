@@ -587,6 +587,7 @@
 
     <path name="voice-speaker">
         <path name="speaker" />
+        <ctl name="RX4 Digital Volume" value="94" />
     </path>
 
     <path name="voice-speaker-mic">
