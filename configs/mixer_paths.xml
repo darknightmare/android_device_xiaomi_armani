@@ -674,7 +674,7 @@
     </path>
 
     <path name="camcorder-mic">
-        <path name="handset-mic" />
+        <path name="speaker-dmic-endfire" />
     </path>
 
     <path name="hdmi-tx">
