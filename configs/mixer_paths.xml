@@ -675,6 +675,9 @@
 
     <path name="camcorder-mic">
         <path name="speaker-dmic-endfire" />
+        <ctl name="ADC1 Volume" value="19" />
+        <ctl name="ADC3 Volume" value="19" />
+        <ctl name="DEC1 Volume" value="90" />
     </path>
 
     <path name="hdmi-tx">
