@@ -19,12 +19,6 @@
   },
   {
     "remote":       "github",
-    "repository":   "Kra1o5/android_hardware_qcom_audio-caf",
-    "target_path":  "hardware/qcom/audio-caf",
-    "revision":     "cm-11.0"
-  },
-  {
-    "remote":       "github",
     "repository":   "armani-dev/android_hardware_qcom_display-caf-legacy",
     "target_path":  "hardware/qcom/display-caf-legacy",
     "revision":     "cm-11.0"
