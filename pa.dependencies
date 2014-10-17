@@ -13,7 +13,7 @@
   },
   {
     "remote":       "github",
-    "repository":   "darknightmare/proprietary_vendor_xiaomi",
+    "repository":   "armani-dev/proprietary_vendor_xiaomi",
     "target_path":  "vendor/xiaomi",
     "revision":     "cm-11.0"
   },
