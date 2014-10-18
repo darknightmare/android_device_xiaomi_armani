@@ -578,7 +578,6 @@
 
     <path name="voice-handset">
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="96" />
     </path>
 
     <path name="voice-handset-tmus">
@@ -587,7 +586,6 @@
 
     <path name="voice-speaker">
         <path name="speaker" />
-        <ctl name="RX4 Digital Volume" value="94" />
     </path>
 
     <path name="voice-speaker-mic">
@@ -679,9 +677,6 @@
         <ctl name="DEC2 MUX" value="ADC3" />
         <ctl name="SLIM_0_TX Channels" value="Two" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
-        <ctl name="ADC1 Volume" value="19" />
-        <ctl name="ADC3 Volume" value="19" />
-        <ctl name="DEC1 Volume" value="90" />
     </path>
 
     <path name="hdmi-tx">
@@ -746,7 +741,7 @@
         <path name="speaker-dmic-endfire" />
         <ctl name="ADC1 Volume" value="19" />
         <ctl name="ADC3 Volume" value="19" />
-        <ctl name="DEC1 Volume" value="90" />
+        <ctl name="DEC1 Volume" value="86" />
     </path>
 
     <path name="speaker-stereo-dmic-ef">
