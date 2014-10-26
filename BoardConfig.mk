@@ -82,9 +82,7 @@ TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-TARGET_DISPLAY_INSECURE_MM_HEAP := true
 
 # Shader cache config options
 # Maximum size of the GLES Shaders that can be cached for reuse.
@@ -195,7 +193,7 @@ BOARD_USES_QC_TIME_SERVICES := true
 # Vold
 BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_MAX_PARTITIONS := 40
+BOARD_VOLD_MAX_PARTITIONS := 29
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Wifi
