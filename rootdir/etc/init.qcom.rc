@@ -518,6 +518,8 @@ on property:sys.boot_completed=1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
     start mpdecision
 
+# Set performance profile
+   setprop sys.perf.profile 1
 
 # CM Performance Profiles
 
