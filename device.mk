@@ -210,7 +210,8 @@ PRODUCT_COPY_FILES += \
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp \
+    persist.usb.hvdcp.detect=true
 
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
