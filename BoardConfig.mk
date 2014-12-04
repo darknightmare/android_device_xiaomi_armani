@@ -102,15 +102,11 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Logging
 TARGET_USES_LOGD := false
 
-# Media
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_USES_QCOM_BSP := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/xiaomi/armani/rootdir/etc/fstab.qcom
