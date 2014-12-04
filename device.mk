@@ -86,13 +86,6 @@ PRODUCT_PACKAGES += \
     resize2fs \
     setup_fs
 
-# FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8226 \
@@ -187,8 +180,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh \
-    init.qcom.fm.sh
+    init.qcom.bt.sh
 
 PRODUCT_PACKAGES += \
     chargeonlymode \
