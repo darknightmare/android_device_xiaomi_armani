@@ -44,7 +44,6 @@ BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/armani/mkbootimg_pre.mk
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
-TARGET_QCOM_AUDIO_VARIANT := caf
 AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
 
@@ -84,7 +83,6 @@ TARGET_NO_RPC := true
 
 # Graphics
 BOARD_EGL_CFG := device/xiaomi/armani/configs/egl.cfg
-TARGET_QCOM_DISPLAY_VARIANT := caf-legacy
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
@@ -105,7 +103,6 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Media
-TARGET_QCOM_MEDIA_VARIANT := caf-legacy
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Power
