@@ -218,7 +218,7 @@ PRODUCT_PACKAGES += \
     hostapd.deny \
     hostapd \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
     p2p_supplicant_overlay.conf \
     wpa_supplicant_overlay.conf \
     WCNSS_cfg.dat \
