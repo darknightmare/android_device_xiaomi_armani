@@ -66,4 +66,7 @@ LOCAL_SRC_FILES    := $(LOCAL_MODULE)
 LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)/firmware/wlan/prima
 include $(BUILD_PREBUILT)
 
+LOCAL_POST_INSTALL_CMD := \
+    ln -sf /system/lib/modules/pronto/pronto_wlan.ko /system/lib/modules/wlan.ko
+
 endif
