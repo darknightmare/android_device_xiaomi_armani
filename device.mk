@@ -202,6 +202,7 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.rc \
     init.qcom.usb.rc \
+    init.wifi_symlink.sh \
     ueventd.qcom.rc
 
 # Recovery
