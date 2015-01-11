@@ -65,15 +65,13 @@ on init
 
 on fs
     mount_all ./fstab.qcom
+    restorecon /persist
     setprop ro.crypto.fuse_sdcard true
     write /sys/kernel/boot_adsp/boot 1
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-
-    # Create wlan module symlink
-    exec /system/bin/sh /init.wifi_symlink.sh
 
 on boot
     insmod /system/lib/modules/adsprpc.ko
@@ -146,6 +144,7 @@ on post-fs-data
     chmod 775 /data/misc/sensors
 
     # Sensor
+    mkdir /persist/misc
     mkdir /persist/misc/sensors
     chmod 775 /persist/misc/sensors
 
@@ -414,11 +413,6 @@ service qseecomd /system/bin/qseecomd
     class late_start
     user root
     group root
-
-service audiod /system/bin/audiod
-    class late_start
-    user system
-    group system
     
 service adsprpcd /system/bin/adsprpcd
     class main
