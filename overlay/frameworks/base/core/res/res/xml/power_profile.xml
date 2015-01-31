@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device name="Android">
     <item name="none">0</item>
-    <item name="screen.on">90</item>
+    <item name="screen.on">100</item>
     <item name="screen.full">160</item>
-    <item name="bluetooth.active">25.2</item>
-    <item name="bluetooth.on">1.8</item>
-    <item name="wifi.on">3.6</item>
-    <item name="wifi.active">74</item>
-    <item name="wifi.scan">54</item>
-    <item name="dsp.audio">10.8</item>
-    <item name="dsp.video">39.6</item>
-    <item name="gps.on">70</item>
-    <item name="radio.active">250</item>
+    <item name="bluetooth.active">142</item>
+    <item name="bluetooth.on">0.3</item>
+    <item name="wifi.on">4</item>
+    <item name="wifi.active">120</item>
+    <item name="wifi.scan">220</item>
+    <item name="dsp.audio">88</item>
+    <item name="dsp.video">88</item>
+    <item name="gps.on">170</item>
+    <item name="radio.active">300</item>
     <item name="radio.scanning">70</item>
     <array name="radio.on">
         <value>3</value>
@@ -19,32 +19,30 @@
     </array>
     <array name="cpu.speeds">
         <value>300000</value>
-        <value>384000</value>
-        <value>600000</value>
-        <value>787200</value>
-        <value>998400</value>
-        <value>1094400</value>
+        <value>422400</value>
+        <value>652800</value>
+        <value>729600</value>
+        <value>883200</value>
+        <value>960000</value>
+        <value>1036800</value>
         <value>1190400</value>
-        <value>1305600</value>
-        <value>1344000</value>
-        <value>1401600</value>
+        <value>1267200</value>
         <value>1497600</value>
-        <value>1593600</value>
+        <value>1574400</value>
     </array>
-    <item name="cpu.idle">2.6</item>
+    <item name="cpu.idle">2.8</item>
     <array name="cpu.active">
-        <value>66.6</value>  <!-- 300 MHz CPU speed -->
-        <value>72.7</value>  <!-- 384 MHz CPU speed -->
-        <value>88.9</value>  <!-- 600 MHz CPU speed -->
-        <value>99.5</value>  <!-- 787 MHz CPU speed -->
-        <value>111.5</value> <!-- 998 MHz CPU speed -->
-        <value>117.3</value> <!-- 1094 MHz CPU speed -->
-        <value>123.6</value> <!-- 1190 MHz CPU speed -->
-        <value>129.8</value> <!-- 1305 MHz CPU speed -->
-        <value>132.7</value> <!-- 1344 MHz CPU speed -->
-        <value>135.8</value> <!-- 1401 MHz CPU speed -->
-        <value>141.8</value> <!-- 1497 MHz CPU speed -->
-        <value>148.5</value> <!-- 1593 MHz CPU speed -->
+        <value>66.6</value>
+        <value>84</value>
+        <value>90.8</value>
+        <value>96</value>
+        <value>105</value>
+        <value>111.5</value>
+        <value>117.3</value>
+        <value>123.6</value>
+        <value>134.5</value>
+        <value>141.8</value>
+        <value>148.5</value>
     </array>
     <item name="battery.capacity">2000</item>
 </device>

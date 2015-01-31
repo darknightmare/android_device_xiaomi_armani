@@ -67,9 +67,6 @@ on fs
     mount_all ./fstab.qcom
     restorecon /persist
 
-    swapon_all ./fstab.qcom
-    write /proc/sys/vm/page-cluster 0
-
     setprop ro.crypto.fuse_sdcard true
     write /sys/kernel/boot_adsp/boot 1
 
@@ -78,20 +75,10 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on boot
-    insmod /system/lib/modules/adsprpc.ko
-
     # Enable writing to led blink node from userspace
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
-
-    chown system system /sys/class/input/input0/enabled
-    chown system system /sys/class/input/input1/enabled
-    chown system system /sys/class/input/input2/enabled
-    chown system system /sys/class/input/input3/enabled
-    chown system system /sys/class/input/input4/enabled
-    chown system system /sys/class/input/input5/enabled
-    chown system system /sys/class/input/input6/enabled
 
     chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
@@ -157,11 +144,6 @@ on post-fs-data
     # Adjust vibrator amplitude
     write /sys/class/timed_output/vibrator/amp 90
 
-    # Set the CPU Freq Sampling rates
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-
     # Chown cpu online files as needed for the Settings app
     chown system system /sys/devices/system/cpu/cpu1/online
     chown system system /sys/devices/system/cpu/cpu2/online
@@ -169,8 +151,17 @@ on post-fs-data
 
     # Hardware tunables
     chown root system /sys/class/timed_output/vibrator/amp
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_min
     chmod 0664 /sys/class/timed_output/vibrator/amp
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_min
     restorecon /sys/class/timed_output/vibrator/amp
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal_min
 
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
@@ -202,11 +193,6 @@ on property:init.svc.wpa_supplicant=stopped
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
-
-service rfs_access /system/bin/rfs_access
-    class core
-    user system
-    group system net_raw
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -342,19 +328,12 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     disabled
     oneshot
 
-on property:crypto.driver.load=1
-    insmod /system/lib/modules/qcedev.ko
-
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
     user root
     group root
     oneshot
     disabled
-
-on property:ro.data.large_tcp_window_size=true
-    # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
-    write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
 service ril-daemon1 /system/bin/rild -c 1
     class main
@@ -437,7 +416,6 @@ service wcnss-service /system/bin/wcnss_service
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
-    disabled
     user system
     socket pps stream 0660 system system
     group system graphics
@@ -445,15 +423,12 @@ service ppd /system/bin/mm-pp-daemon
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
-on property:init.svc.surfaceflinger=running
-    start ppd
-
 service charger /sbin/chargeonlymode
     class charger
 
 on property:sys.boot_completed=1
     # Enable Power modes
-    write /sys/block/mmcblk0/queue/scheduler cfq
+    write /sys/block/mmcblk0/queue/scheduler row
     write /sys/module/lpm_levels/enable_low_power/l2 4
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
@@ -468,7 +443,9 @@ on property:sys.boot_completed=1
     write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
-    start mpdecision
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
 
 # Set performance profile
    setprop sys.perf.profile 1
@@ -478,15 +455,15 @@ on property:sys.boot_completed=1
 # Powersave
 on property:sys.perf.profile=0
     stop mpdecision
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor conservative
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor conservative
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor conservative
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor conservative
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1190400
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1190400
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1190400
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1190400
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
     start mpdecision
 
 # Balanced
@@ -496,8 +473,8 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor ondemand
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor ondemand
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor ondemand
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
     write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 2
     write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 10
@@ -510,7 +487,7 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1401600
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1401600
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1401600
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
     start mpdecision
 
 # Performance
@@ -528,4 +505,4 @@ on property:sys.perf.profile=2
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1593600
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1593600
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1593600
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor performance
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor performance
