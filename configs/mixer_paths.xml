@@ -715,7 +715,7 @@
 
     <path name="voice-handset">
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="95" />
+        <ctl name="RX1 Digital Volume" value="92" />
     </path>
 
     <path name="voice-handset-tmus">
@@ -724,7 +724,7 @@
 
     <path name="voice-speaker">
         <path name="speaker" />
-        <ctl name="SPK DRV Volume" value="9" />
+        <ctl name="SPK DRV Volume" value="8" />
         <ctl name="RX1 Digital Volume" value="99" />
     </path>
 

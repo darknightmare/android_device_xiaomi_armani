@@ -16,18 +16,20 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Proprietary files
-$(call inherit-product, vendor/xiaomi/armani/armani-vendor.mk)
-
-# Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-# Dalvik
+PRODUCT_TAGS += dalvik.gc.type-precise
+
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+
+# ANT+
+PRODUCT_PACKAGES += \
+    AntHalService \
+    com.dsi.ant.antradio_library \
+    libantradio
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -43,8 +45,7 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     tinymix
-    
-# Audio configuration
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
@@ -53,6 +54,9 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
     bluetooth.hfp.client=1
+
+PRODUCT_PACKAGES += \
+    init.qcom.bt.sh
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -92,6 +96,9 @@ PRODUCT_PACKAGES += \
     FMRecord \
     libqcomfm_jni \
     qcom.fmradio
+
+PRODUCT_PACKAGES += \
+    init.qcom.fm.sh
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -151,6 +158,7 @@ PRODUCT_BOOT_JARS += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
+    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -187,15 +195,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh \
-    init.qcom.fm.sh
-
-PRODUCT_PACKAGES += \
     chargeonlymode \
     fstab.qcom \
     init.qcom.rc \
     init.qcom.usb.rc \
-    init.wifi_symlink.sh \
     ueventd.qcom.rc
 
 # Recovery
@@ -203,6 +206,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true \
     ro.cwm.forbid_mount=/persist,/firmware \
     ro.cwm.forbid_format=/fsg,/firmware,/boot,/persist
+
+# Sensors
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf
 
 # Thermal
 PRODUCT_COPY_FILES += \
@@ -214,6 +221,9 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
+
+# UTC date
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -230,6 +240,7 @@ PRODUCT_PACKAGES += \
     libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
+    libwcnss_qmi \
     wcnss_service
 
 PRODUCT_PROPERTY_OVERRIDES += \
