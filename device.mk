@@ -53,7 +53,8 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
-    bluetooth.hfp.client=1
+    bluetooth.hfp.client=1 \
+    qcom.bt.dev_power_class=1
 
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
@@ -102,17 +103,17 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8226 \
-    libgps.utils \
-    libloc_adapter \
-    libloc_eng
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.gps.agps_provider=1 \
-    persist.gps.qc_nlp_in_use=0
+    gps.msm8226
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
+    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/gps/lowi.conf:system/etc/lowi.conf \
+    $(LOCAL_PATH)/gps/msap.conf:system/etc/msap.conf \
+    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf \
+    $(LOCAL_PATH)/gps/xtwifi.conf:system/etc/xtwifi.conf
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -226,9 +227,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-# UTC date
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
 # Wifi
 PRODUCT_PACKAGES += \
     hostapd.accept \
@@ -248,7 +246,9 @@ PRODUCT_PACKAGES += \
     wcnss_service
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.debug.wfd.enable=1 \
-    persist.sys.wfd.virtual=0 \
-    persist.sys.ssr.restart_level=3 \
     wifi.interface=wlan0
+
+# WFD
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.debug.wfd.enable=1 \
+    persist.sys.wfd.virtual=0

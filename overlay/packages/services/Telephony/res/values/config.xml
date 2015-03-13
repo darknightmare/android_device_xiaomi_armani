@@ -25,4 +25,7 @@
 
     <!-- Flag indicating if the tty is enabled -->
     <bool name="tty_enabled">true</bool>
+    
+    <!-- Flag whether to enable Proximity setting-->
+    <bool name="config_proximity_enable" translatable="false">true</bool>
 </resources>
